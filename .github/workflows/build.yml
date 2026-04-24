@@ -13,9 +13,16 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install flet
-      # 关键修改：加上 --yes 参数，让它自动确认所有提示
+      # 加上 --yes 自动确认
       - run: flet build apk --yes
+      
+      # 关键调试步骤：列出 build 目录下所有文件，找到 APK 所在位置
+      - name: Find APK
+        run: ls -R build/
+
       - uses: actions/upload-artifact@v4
         with:
           name: app-apk
-          path: build/apk/app-release.apk
+          # 如果上面找到了路径，把这里的 path 修改正确
+          path: build/apk/app-release.apk 
+          if-no-files-found: error
