@@ -23,6 +23,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: app-apk
-          # 如果上面找到了路径，把这里的 path 修改正确
-          path: build/apk/app-release.apk 
+          # 将这里的路径修改为你日志里看到的实际路径
+          path: build/apk/apk_build.apk
           if-no-files-found: error
